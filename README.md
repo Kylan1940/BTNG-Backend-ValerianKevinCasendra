@@ -6,9 +6,9 @@ Proyek ini dibuat untuk memenuhi **Tugas Akhir Backend BTNG DNCC 2026**.
 
 ## Tautan Penting
 
-- **Website Utama:** [https://app-7b60d00d-4a32-40cd-a97f-e998936cd2e4.cleverapps.io/](https://app-7b60d00d-4a32-40cd-a97f-e998936cd2e4.cleverapps.io/)
-- **Dokumentasi API:** [https://app-7b60d00d-4a32-40cd-a97f-e998936cd2e4.cleverapps.io/docs/api#/](https://app-7b60d00d-4a32-40cd-a97f-e998936cd2e4.cleverapps.io/docs/api#/)
-- **API Endpoint:** [https://app-7b60d00d-4a32-40cd-a97f-e998936cd2e4.cleverapps.io/api](https://app-7b60d00d-4a32-40cd-a97f-e998936cd2e4.cleverapps.io/api)
+- **Website Utama:** [https://btng-backend-valeriankevincasendra-production.up.railway.app/](https://btng-backend-valeriankevincasendra-production.up.railway.app/)
+- **Dokumentasi API:** [https://btng-backend-valeriankevincasendra-production.up.railway.app/docs/api#/](https://btng-backend-valeriankevincasendra-production.up.railway.app/docs/api#/)
+- **API Endpoint:** [https://btng-backend-valeriankevincasendra-production.up.railway.app/api](https://btng-backend-valeriankevincasendra-production.up.railway.app/api)
 - **GitHub Repository:** [https://github.com/Kylan1940/BTNG-Backend-ValerianKevinCasendra](https://github.com/Kylan1940/BTNG-Backend-ValerianKevinCasendra)
 
 ## Tech Stack
