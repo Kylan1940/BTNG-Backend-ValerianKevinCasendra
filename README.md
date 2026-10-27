@@ -1,72 +1,70 @@
 # InventoryAPI
 
-REST API untuk pengelolaan data inventaris barang yang dikembangkan menggunakan Laravel 12 dan MySQL.
+REST API untuk pengelolaan data inventaris barang yang dibangun menggunakan Laravel dan MySQL.
 
-Proyek ini dibuat untuk **memenuhi Tugas Akhir Backend BTNG DNCC 2026**.
+Proyek ini dibuat untuk memenuhi **Tugas Akhir Backend BTNG DNCC 2026**.
 
 ## Tautan Penting
 
-- **Website Utama:** [https://app-7b60d00d-4a32-40cd-a97f-e998936cd2e4.cleverapps.io/](https://app-7b60d00d-4a32-40cd-a97f-e998936cd2e4.cleverapps.io/)
-- **Dokumentasi API:** [https://app-7b60d00d-4a32-40cd-a97f-e998936cd2e4.cleverapps.io/docs/api#/](https://app-7b60d00d-4a32-40cd-a97f-e998936cd2e4.cleverapps.io/docs/api#/)
-- **API Endpoint:** [https://app-7b60d00d-4a32-40cd-a97f-e998936cd2e4.cleverapps.io/api](https://app-7b60d00d-4a32-40cd-a97f-e998936cd2e4.cleverapps.io/api)
-- **GitHub Repository:** [https://github.com/Kylan1940/BTNG-Backend-ValerianKevinCasendra](https://github.com/Kylan1940/BTNG-Backend-ValerianKevinCasendra)
+- **Website Utama:** [Inventory API](https://btng-backend-valeriankevincasendra-production.up.railway.app/)
+- **Dokumentasi API:** [Scramble API Documentation](https://btng-backend-valeriankevincasendra-production.up.railway.app/docs/api#/)
+- **Base URL API:** [API Endpoint](https://btng-backend-valeriankevincasendra-production.up.railway.app/api)
+- **GitHub Repository:** [BTNG-Backend-ValerianKevinCasendra](https://github.com/Kylan1940/BTNG-Backend-ValerianKevinCasendra)
 
-## Teknologi yang Digunakan
+## Tech Stack
 
-- **Laravel 12** sebagai framework backend.
+- **Laravel** sebagai framework backend.
 - **PHP** sebagai bahasa pemrograman.
-- **MySQL** sebagai database.
-- **Laravel Eloquent ORM** untuk pengelolaan data database.
-- **Scramble** untuk dokumentasi API.
+- **MySQL** sebagai sistem manajemen basis data.
+- **Eloquent ORM** untuk mengelola data pada database.
+- **Scramble** untuk menghasilkan dokumentasi API.
 - **Postman** untuk pengujian endpoint API.
 
 ## Fitur
 
 - Mengambil seluruh data barang.
 - Mengambil detail barang berdasarkan ID.
-- Menambahkan data barang baru.
+- Menambahkan barang baru.
 - Memperbarui data barang.
-- Menghapus data barang.
-- Validasi input untuk memastikan data yang dikirim sesuai ketentuan.
-- Validasi SKU agar setiap barang memiliki SKU yang unik.
-- Validasi harga dan stok agar tidak bernilai negatif.
-- Dokumentasi endpoint API menggunakan Scramble.
+- Menghapus barang.
+- Validasi input saat menambahkan dan memperbarui data.
+- Validasi keunikan SKU.
+- Respons API menggunakan pesan berbahasa Indonesia.
+- Dokumentasi endpoint melalui Scramble.
 
 ## Struktur Database
 
-Proyek ini menggunakan tabel `items` untuk menyimpan data inventaris barang.
+API menggunakan tabel `items` untuk menyimpan data inventaris.
 
 | Kolom | Tipe Data | Keterangan |
 |---|---|---|
-| `id` | Big Integer | Primary key |
+| `id` | Big Integer | ID unik barang |
 | `name` | String | Nama barang |
-| `sku` | String | Kode barang yang unik |
-| `description` | Text, nullable | Deskripsi barang |
-| `price` | Decimal | Harga barang |
+| `sku` | String | Kode unik barang |
+| `description` | Text | Deskripsi barang, dapat dikosongkan |
+| `price` | Numeric | Harga barang |
 | `stock` | Integer | Jumlah stok barang |
 | `created_at` | Timestamp | Waktu data dibuat |
 | `updated_at` | Timestamp | Waktu data diperbarui |
 
-### Ketentuan Data
-
-- SKU harus unik dan tidak boleh digunakan oleh barang lain.
-- Harga barang harus bernilai nol atau lebih.
-- Stok barang harus berupa bilangan bulat nol atau lebih.
-- Deskripsi barang bersifat opsional.
-- Data yang dikirim akan divalidasi sebelum diproses oleh API.
-
 ## Endpoint API
 
-| Metode | Endpoint | Fungsi |
-|---|---|---|
-| `GET` | `/api/items` | Mengambil seluruh data barang |
-| `GET` | `/api/items/{id}` | Mengambil detail barang berdasarkan ID |
-| `POST` | `/api/items` | Menambahkan barang baru |
-| `PUT` | `/api/items/{id}` | Memperbarui data barang |
-| `PATCH` | `/api/items/{id}` | Memperbarui sebagian data barang |
-| `DELETE` | `/api/items/{id}` | Menghapus barang berdasarkan ID |
+Base URL:
 
-## Contoh Penggunaan API
+```text
+https://btng-backend-valeriankevincasendra-production.up.railway.app/api
+```
+
+| Metode | Endpoint | Keterangan |
+|---|---|---|
+| `GET` | `/items` | Mengambil seluruh data barang |
+| `POST` | `/items` | Menambahkan barang baru |
+| `GET` | `/items/{id}` | Mengambil detail barang berdasarkan ID |
+| `PUT` | `/items/{id}` | Memperbarui data barang |
+| `PATCH` | `/items/{id}` | Memperbarui sebagian data barang |
+| `DELETE` | `/items/{id}` | Menghapus barang berdasarkan ID |
+
+## Contoh Penggunaan
 
 ### 1. Mengambil Seluruh Data Barang
 
@@ -77,17 +75,17 @@ GET /api/items
 Accept: application/json
 ```
 
-**Contoh respons**
+**Contoh respons sukses**
 
 ```json
 {
-  "message": "Items retrieved successfully",
+  "message": "Items berhasil diambil",
   "data": [
     {
       "id": 1,
-      "name": "Mechanical Keyboard",
+      "name": "Keyboard",
       "sku": "KB-001",
-      "description": "Keyboard mechanical 87 keys",
+      "description": "Keyboard mekanis",
       "price": 450000,
       "stock": 20
     }
@@ -95,7 +93,7 @@ Accept: application/json
 }
 ```
 
-### 2. Menambahkan Barang Baru
+### 2. Menambahkan Barang
 
 **Request**
 
@@ -105,21 +103,72 @@ Content-Type: application/json
 Accept: application/json
 ```
 
-**Contoh body JSON**
+**Body JSON**
 
 ```json
 {
-  "name": "Mechanical Keyboard",
-  "sku": "KB-002",
-  "description": "Keyboard mechanical dengan switch tactile",
-  "price": 450000,
-  "stock": 20
+  "name": "Mouse",
+  "sku": "MS-001",
+  "description": "Mouse nirkabel",
+  "price": 150000,
+  "stock": 10
 }
 ```
 
-Contoh tersebut merupakan data yang dapat digunakan untuk menguji penambahan barang, selama SKU belum digunakan oleh barang lain.
+**Contoh respons sukses**
 
-### 3. Memperbarui Data Barang
+Status HTTP: `201 Created`
+
+```json
+{
+  "message": "Item berhasil dibuat",
+  "data": {
+    "id": 2,
+    "name": "Mouse",
+    "sku": "MS-001",
+    "description": "Mouse nirkabel",
+    "price": 150000,
+    "stock": 10
+  }
+}
+```
+
+### 3. Mengambil Detail Barang
+
+**Request**
+
+```http
+GET /api/items/1
+Accept: application/json
+```
+
+**Contoh respons sukses**
+
+```json
+{
+  "message": "Item berhasil diambil",
+  "data": {
+    "id": 1,
+    "name": "Keyboard",
+    "sku": "KB-001",
+    "description": "Keyboard mekanis",
+    "price": 450000,
+    "stock": 20
+  }
+}
+```
+
+**Contoh respons ketika barang tidak ditemukan**
+
+Status HTTP: `404 Not Found`
+
+```json
+{
+  "message": "Item tidak ditemukan"
+}
+```
+
+### 4. Memperbarui Data Barang
 
 **Request**
 
@@ -129,7 +178,7 @@ Content-Type: application/json
 Accept: application/json
 ```
 
-**Contoh body JSON**
+**Body JSON**
 
 ```json
 {
@@ -138,9 +187,23 @@ Accept: application/json
 }
 ```
 
-Request tersebut digunakan untuk memperbarui sebagian data barang dengan ID `1`, sesuai aturan validasi dan implementasi endpoint.
+**Contoh respons sukses**
 
-### 4. Menghapus Data Barang
+```json
+{
+  "message": "Item berhasil diperbarui",
+  "data": {
+    "id": 1,
+    "name": "Keyboard",
+    "sku": "KB-001",
+    "description": "Keyboard mekanis",
+    "price": 475000,
+    "stock": 15
+  }
+}
+```
+
+### 5. Menghapus Barang
 
 **Request**
 
@@ -149,9 +212,43 @@ DELETE /api/items/1
 Accept: application/json
 ```
 
-Request tersebut digunakan untuk menghapus barang dengan ID `1`.
+**Contoh respons sukses**
 
-## Instalasi dan Menjalankan Proyek
+```json
+{
+  "message": "Item berhasil dihapus"
+}
+```
+
+**Contoh respons ketika barang tidak ditemukan**
+
+Status HTTP: `404 Not Found`
+
+```json
+{
+  "message": "Item tidak ditemukan"
+}
+```
+
+## Validasi Data
+
+Saat membuat barang, API menerapkan aturan validasi berikut:
+
+| Field | Aturan |
+|---|---|
+| `name` | Wajib diisi dan harus berupa string |
+| `sku` | Wajib diisi, berupa string, dan unik |
+| `description` | Opsional dan harus berupa string jika diisi |
+| `price` | Wajib diisi dan harus berupa angka |
+| `stock` | Wajib diisi dan harus berupa bilangan bulat |
+
+Saat memperbarui data, field dapat dikirim secara parsial. Field yang tidak dikirim tidak perlu diubah.
+
+SKU harus unik pada saat pembuatan barang. Untuk proses pembaruan, validasi SKU juga perlu mengecualikan SKU milik barang yang sedang diperbarui agar barang dapat mempertahankan SKU-nya sendiri.
+
+**Catatan implementasi:** aturan validasi pada controller yang digunakan saat ini belum secara eksplisit menolak harga dan stok negatif. Validasi tersebut perlu ditambahkan jika memang menjadi persyaratan tugas.
+
+## Menjalankan Proyek Secara Lokal
 
 ### 1. Clone Repository
 
@@ -168,7 +265,7 @@ composer install
 
 ### 3. Konfigurasi Environment
 
-Salin file konfigurasi contoh:
+Salin file `.env.example` menjadi `.env`:
 
 ```bash
 cp .env.example .env
@@ -177,7 +274,6 @@ cp .env.example .env
 Sesuaikan konfigurasi database pada file `.env`:
 
 ```dotenv
-APP_NAME="Inventory API"
 APP_ENV=local
 APP_DEBUG=true
 APP_URL=http://localhost:8000
@@ -190,7 +286,7 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Sesuaikan nama database, username, dan password dengan konfigurasi MySQL lokal.
+Gunakan konfigurasi database lokal milikmu sendiri.
 
 ### 4. Generate Application Key
 
@@ -204,13 +300,7 @@ php artisan key:generate
 php artisan migrate
 ```
 
-Jika proyek memiliki seeder yang sudah disiapkan untuk mengisi data contoh, gunakan:
-
-```bash
-php artisan db:seed
-```
-
-### 6. Jalankan Server Laravel
+### 6. Jalankan Server
 
 ```bash
 php artisan serve
@@ -219,30 +309,11 @@ php artisan serve
 API dapat diakses melalui:
 
 ```text
-http://localhost:8000
+http://localhost:8000/api
 ```
 
-## Dokumentasi API
-
-Dokumentasi API dibuat menggunakan Scramble untuk membantu melihat endpoint, parameter, validasi, serta skema request dan respons.
-
-Setelah server Laravel berjalan, dokumentasi dapat diakses melalui:
+Dokumentasi API dapat dibuka melalui:
 
 ```text
 http://localhost:8000/docs/api
 ```
-
-## Pengujian API
-
-Endpoint dapat diuji menggunakan Postman atau aplikasi HTTP client lainnya.
-
-Pengujian yang dapat dilakukan meliputi:
-
-- Mengambil daftar barang.
-- Mengambil detail barang berdasarkan ID.
-- Menambahkan barang dengan data valid.
-- Menguji SKU yang duplikat.
-- Memperbarui data barang.
-- Menguji harga dan stok dengan nilai negatif.
-- Mengakses barang yang tidak ditemukan.
-- Menghapus barang.
