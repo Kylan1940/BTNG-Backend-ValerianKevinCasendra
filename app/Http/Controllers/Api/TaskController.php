@@ -14,7 +14,7 @@ class TaskController extends Controller
     {
         $item = Item::all();
         return response()->json([
-            'message' => 'Items retrieved successfully',
+            'message' => 'Items berhasil diambil',
             'data' => TaskResource::collection($item)
         ]);
     }
@@ -30,7 +30,7 @@ class TaskController extends Controller
         ]);
         $item = Item::create($validated);
         return response()->json([
-            'message' => 'Item created successfully',
+            'message' => 'Item berhasil dibuat',
             'data' => new TaskResource($item)
         ], 201);
     }
@@ -39,10 +39,10 @@ class TaskController extends Controller
     {
         $item = Item::find($id);
         if (!$item) {
-            return response()->json(['message' => 'Item not found'], 404);
+            return response()->json(['message' => 'Item tidak ditemukan'], 404);
         }
         return response()->json([
-            'message' => 'Item retrieved successfully',
+            'message' => 'Item berhasil diambil',
             'data' => new TaskResource($item)
         ]);
     }
@@ -51,7 +51,7 @@ class TaskController extends Controller
     {
         $item = Item::find($id);
         if (!$item) {
-            return response()->json(['message' => 'Item not found'], 404);
+            return response()->json(['message' => 'Item tidak ditemukan'], 404);
         }
         $validated = $request->validate([
             'name' => 'sometimes|required|string',
@@ -62,7 +62,7 @@ class TaskController extends Controller
         ]);
         $item->update($validated);
         return response()->json([
-            'message' => 'Item updated successfully',
+            'message' => 'Item berhasil diperbarui',
             'data' => new TaskResource($item)
         ]);
     }
@@ -71,9 +71,9 @@ class TaskController extends Controller
     {
         $item = Item::find($id);
         if (!$item) {
-            return response()->json(['message' => 'Item not found'], 404);
+            return response()->json(['message' => 'Item tidak ditemukan'], 404);
         }
         $item->delete();
-        return response()->json(['message' => 'Item deleted successfully']);
+        return response()->json(['message' => 'Item berhasil dihapus']);
     }
 }

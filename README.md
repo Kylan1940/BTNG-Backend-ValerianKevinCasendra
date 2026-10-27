@@ -1,4 +1,4 @@
-# Inventory API
+# InventoryAPI
 
 REST API untuk pengelolaan data inventaris barang yang dikembangkan menggunakan Laravel 12 dan MySQL.
 
