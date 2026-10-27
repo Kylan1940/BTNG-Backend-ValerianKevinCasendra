@@ -1,66 +1,248 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Inventory API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+REST API untuk pengelolaan data inventaris barang yang dikembangkan menggunakan Laravel 12 dan MySQL.
 
-## About Laravel
+Proyek ini dibuat untuk **memenuhi Tugas Akhir Backend BTNG DNCC 2026**.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tautan Penting
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Website Utama:** [https://btng-backend-valeriankevincasendra-production.up.railway.app/](https://btng-backend-valeriankevincasendra-production.up.railway.app/)
+- **Dokumentasi API:** [https://btng-backend-valeriankevincasendra-production.up.railway.app/docs/api#/](https://btng-backend-valeriankevincasendra-production.up.railway.app/docs/api#/)
+- **API Endpoint:** [https://btng-backend-valeriankevincasendra-production.up.railway.app/api](https://btng-backend-valeriankevincasendra-production.up.railway.app/api)
+- **GitHub Repository:** [https://github.com/Kylan1940/BTNG-Backend-ValerianKevinCasendra](https://github.com/Kylan1940/BTNG-Backend-ValerianKevinCasendra)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Teknologi yang Digunakan
 
-## Learning Laravel
+- **Laravel 12** sebagai framework backend.
+- **PHP** sebagai bahasa pemrograman.
+- **MySQL** sebagai database.
+- **Laravel Eloquent ORM** untuk pengelolaan data database.
+- **Scramble** untuk dokumentasi API.
+- **Postman** untuk pengujian endpoint API.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Fitur
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- Mengambil seluruh data barang.
+- Mengambil detail barang berdasarkan ID.
+- Menambahkan data barang baru.
+- Memperbarui data barang.
+- Menghapus data barang.
+- Validasi input untuk memastikan data yang dikirim sesuai ketentuan.
+- Validasi SKU agar setiap barang memiliki SKU yang unik.
+- Validasi harga dan stok agar tidak bernilai negatif.
+- Dokumentasi endpoint API menggunakan Scramble.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Struktur Database
 
-## Laravel Sponsors
+Proyek ini menggunakan tabel `items` untuk menyimpan data inventaris barang.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+| Kolom | Tipe Data | Keterangan |
+|---|---|---|
+| `id` | Big Integer | Primary key |
+| `name` | String | Nama barang |
+| `sku` | String | Kode barang yang unik |
+| `description` | Text, nullable | Deskripsi barang |
+| `price` | Decimal | Harga barang |
+| `stock` | Integer | Jumlah stok barang |
+| `created_at` | Timestamp | Waktu data dibuat |
+| `updated_at` | Timestamp | Waktu data diperbarui |
 
-### Premium Partners
+### Ketentuan Data
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+- SKU harus unik dan tidak boleh digunakan oleh barang lain.
+- Harga barang harus bernilai nol atau lebih.
+- Stok barang harus berupa bilangan bulat nol atau lebih.
+- Deskripsi barang bersifat opsional.
+- Data yang dikirim akan divalidasi sebelum diproses oleh API.
 
-## Contributing
+## Endpoint API
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Metode | Endpoint | Fungsi |
+|---|---|---|
+| `GET` | `/api/items` | Mengambil seluruh data barang |
+| `GET` | `/api/items/{id}` | Mengambil detail barang berdasarkan ID |
+| `POST` | `/api/items` | Menambahkan barang baru |
+| `PUT` | `/api/items/{id}` | Memperbarui data barang |
+| `PATCH` | `/api/items/{id}` | Memperbarui sebagian data barang |
+| `DELETE` | `/api/items/{id}` | Menghapus barang berdasarkan ID |
 
-## Code of Conduct
+## Contoh Penggunaan API
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 1. Mengambil Seluruh Data Barang
 
-## Security Vulnerabilities
+**Request**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```http
+GET /api/items
+Accept: application/json
+```
 
-## License
+**Contoh respons**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```json
+{
+  "message": "Items retrieved successfully",
+  "data": [
+    {
+      "id": 1,
+      "name": "Mechanical Keyboard",
+      "sku": "KB-001",
+      "description": "Keyboard mechanical 87 keys",
+      "price": 450000,
+      "stock": 20
+    }
+  ]
+}
+```
+
+### 2. Menambahkan Barang Baru
+
+**Request**
+
+```http
+POST /api/items
+Content-Type: application/json
+Accept: application/json
+```
+
+**Contoh body JSON**
+
+```json
+{
+  "name": "Mechanical Keyboard",
+  "sku": "KB-002",
+  "description": "Keyboard mechanical dengan switch tactile",
+  "price": 450000,
+  "stock": 20
+}
+```
+
+Contoh tersebut merupakan data yang dapat digunakan untuk menguji penambahan barang, selama SKU belum digunakan oleh barang lain.
+
+### 3. Memperbarui Data Barang
+
+**Request**
+
+```http
+PATCH /api/items/1
+Content-Type: application/json
+Accept: application/json
+```
+
+**Contoh body JSON**
+
+```json
+{
+  "price": 475000,
+  "stock": 15
+}
+```
+
+Request tersebut digunakan untuk memperbarui sebagian data barang dengan ID `1`, sesuai aturan validasi dan implementasi endpoint.
+
+### 4. Menghapus Data Barang
+
+**Request**
+
+```http
+DELETE /api/items/1
+Accept: application/json
+```
+
+Request tersebut digunakan untuk menghapus barang dengan ID `1`.
+
+## Instalasi dan Menjalankan Proyek
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/Kylan1940/BTNG-Backend-ValerianKevinCasendra.git
+cd BTNG-Backend-ValerianKevinCasendra
+```
+
+### 2. Instal Dependensi
+
+```bash
+composer install
+```
+
+### 3. Konfigurasi Environment
+
+Salin file konfigurasi contoh:
+
+```bash
+cp .env.example .env
+```
+
+Sesuaikan konfigurasi database pada file `.env`:
+
+```dotenv
+APP_NAME="Inventory API"
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://localhost:8000
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=inventory_api
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Sesuaikan nama database, username, dan password dengan konfigurasi MySQL lokal.
+
+### 4. Generate Application Key
+
+```bash
+php artisan key:generate
+```
+
+### 5. Jalankan Migrasi Database
+
+```bash
+php artisan migrate
+```
+
+Jika proyek memiliki seeder yang sudah disiapkan untuk mengisi data contoh, gunakan:
+
+```bash
+php artisan db:seed
+```
+
+### 6. Jalankan Server Laravel
+
+```bash
+php artisan serve
+```
+
+API dapat diakses melalui:
+
+```text
+http://localhost:8000
+```
+
+## Dokumentasi API
+
+Dokumentasi API dibuat menggunakan Scramble untuk membantu melihat endpoint, parameter, validasi, serta skema request dan respons.
+
+Setelah server Laravel berjalan, dokumentasi dapat diakses melalui:
+
+```text
+http://localhost:8000/docs/api
+```
+
+## Pengujian API
+
+Endpoint dapat diuji menggunakan Postman atau aplikasi HTTP client lainnya.
+
+Pengujian yang dapat dilakukan meliputi:
+
+- Mengambil daftar barang.
+- Mengambil detail barang berdasarkan ID.
+- Menambahkan barang dengan data valid.
+- Menguji SKU yang duplikat.
+- Memperbarui data barang.
+- Menguji harga dan stok dengan nilai negatif.
+- Mengakses barang yang tidak ditemukan.
+- Menghapus barang.
