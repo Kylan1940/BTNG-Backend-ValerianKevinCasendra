@@ -11,6 +11,8 @@ Proyek ini dibuat untuk memenuhi **Tugas Akhir Backend BTNG DNCC 2026**.
 - **API Endpoint:** [https://btng-backend-valeriankevincasendra-production.up.railway.app/api](https://btng-backend-valeriankevincasendra-production.up.railway.app/api)
 - **GitHub Repository:** [https://github.com/Kylan1940/BTNG-Backend-ValerianKevinCasendra](https://github.com/Kylan1940/BTNG-Backend-ValerianKevinCasendra)
 
+> Pada respon pertama mungkin akan memakan waktu beberapa detik untuk "membangunkan" aplikasi dari proses sleep
+
 ## Tech Stack
 
 - **Laravel** sebagai framework backend.
